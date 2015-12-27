@@ -1,0 +1,68 @@
+<div class="content-wrapper ng-scope ng-fadeInUp">
+    <div commety-header></div>
+    <div class="row" ng-controller="commetyController" ng-init="loanForm()">
+        <div class="col-lg-4">
+            <form name="loanForm" novalidate="" class="form-validate">
+            <!-- START panel-->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">Form Login</div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="control-label">Unique code (Name) *</label>
+                        <input type="text" required="" name="name" ng-model="loan.name" class="form-control" />
+                        <span ng-show="loanForm.name.$dirty && loanForm.name.$error.required" class="text-danger">This field is required</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Mobile *</label>
+                        <input type="password" name="mobile" required="" ng-model="loan.mobile" class="form-control" />
+                        <span ng-show="loanForm.mobile.$dirty && loanForm.mobile.$error.required" class="text-danger">This field is required</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Amount *</label>
+                        <input type="password" name="amount" required="" ng-model="loan.amount" class="form-control" />
+                        <span ng-show="loanForm.amount.$dirty && loanForm.amount.$error.required" class="text-danger">This field is required</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">percent *</label>
+                        <input type="password" name="percent" required="" ng-model="loan.percent" class="form-control" />
+                        <span ng-show="loanForm.percent.$dirty && loanForm.percent.$error.required" class="text-danger">This field is required</span>
+                    </div>
+                    <div class="required">* Required fields</div>
+                </div>
+                <div class="panel-footer">
+                    <div class="clearfix">
+                        <div class="pull-right">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END panel-->
+        </form>
+        </div>
+        <div class="col-lg-8">
+                <!-- START panel-->
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3 class="m0 pb-lg">Loan Records</h3>
+                        <paneltool tool-refresh="traditional"></paneltool>
+                    </div>
+                    <div class="panel-footer clearfix">
+                        <div class="input-group">
+                            <input placeholder="Search message .." class="form-control input-sm" type="text">
+               <span class="input-group-btn">
+                  <button type="submit" class="btn btn-default btn-sm">Search</button>
+               </span>
+                        </div>
+                    </div>
+                    <!-- START table-responsive-->
+                    <div class="table-responsive">
+                        <div ng-grid="gridOptions"></div>
+                    </div>
+                    <!-- END table-responsive-->
+                </div>
+                <!-- END panel-->
+            </div>
+    </div>
+</div>

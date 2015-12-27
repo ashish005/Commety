@@ -1,0 +1,204 @@
+<div class="content-wrapper ng-scope ng-fadeInUp">
+    <div commety-header></div>
+    <!--<div class="row" ng-controller="commetyController" ng-init="newMemberForm()">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <h3 class="m0 pb-lg">Add New Commety Member</h3>
+            <div class="form-group mb-xl">
+                <label class="control-label mb">Group Name</label>
+                <br/>
+                <select chosen="" ng-model="searchState" class="chosen-select form-control">
+                    <optgroup label="Alaskan/Hawaiian Time Zone">
+                        <option value="AK">Alaska</option>
+                        <option value="HI">Hawaii</option>
+                    </optgroup>
+                    <optgroup label="Pacific Time Zone">
+                        <option value="CA">California</option>
+                        <option value="NV">Nevada</option>
+                        <option value="OR">Oregon</option>
+                        <option value="WA">Washington</option>
+                    </optgroup>
+                    <optgroup label="Mountain Time Zone">
+                        <option value="AZ">Arizona</option>
+                        <option value="CO">Colorado</option>
+                        <option value="ID">Idaho</option>
+                        <option value="MT">Montana</option>
+                        <option value="NE">Nebraska</option>
+                        <option value="NM">New Mexico</option>
+                        <option value="ND">North Dakota</option>
+                        <option value="UT">Utah</option>
+                        <option value="WY">Wyoming</option>
+                    </optgroup>
+                    <optgroup label="Central Time Zone">
+                        <option value="AL">Alabama</option>
+                        <option value="AR">Arkansas</option>
+                        <option value="IL">Illinois</option>
+                        <option value="IA">Iowa</option>
+                        <option value="KS">Kansas</option>
+                        <option value="KY">Kentucky</option>
+                        <option value="LA">Louisiana</option>
+                        <option value="MN">Minnesota</option>
+                        <option value="MS">Mississippi</option>
+                        <option value="MO">Missouri</option>
+                        <option value="OK">Oklahoma</option>
+                        <option value="SD">South Dakota</option>
+                        <option value="TX">Texas</option>
+                        <option value="TN">Tennessee</option>
+                        <option value="WI">Wisconsin</option>
+                    </optgroup>
+                    <optgroup label="Eastern Time Zone">
+                        <option value="CT">Connecticut</option>
+                        <option value="DE">Delaware</option>
+                        <option value="FL">Florida</option>
+                        <option value="GA">Georgia</option>
+                        <option value="IN">Indiana</option>
+                        <option value="ME">Maine</option>
+                        <option value="MD">Maryland</option>
+                        <option value="MA">Massachusetts</option>
+                        <option value="MI">Michigan</option>
+                        <option value="NH">New Hampshire</option>
+                        <option value="NJ">New Jersey</option>
+                        <option value="NY">New York</option>
+                        <option value="NC">North Carolina</option>
+                        <option value="OH">Ohio</option>
+                        <option value="PA">Pennsylvania</option>
+                        <option value="RI">Rhode Island</option>
+                        <option value="SC">South Carolina</option>
+                        <option value="VT">Vermont</option>
+                        <option value="VA">Virginia</option>
+                        <option value="WV">West Virginia</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="form-group mb-xl">
+                <label class="control-label mb">Name</label>
+                <br/>
+                <input type="text" value="" class="form-control" />
+            </div>
+            <div class="form-group mb-xl">
+                <label class="control-label mb">Mobile</label>
+                <br/>
+                <input type="text" value="" class="form-control" />
+            </div>
+            <div class="form-group mb-xl">
+                <label class="control-label mb">Amount</label>
+                <br/>
+                <input type="text" value="" class="form-control" />
+            </div>
+            <div class="form-group mb-xl">
+                <label class="control-label mb">Months of commety</label>
+                <br/>
+                <select chosen="" ng-model="searchState" class="chosen-select form-control">
+                    <option value="CA">Jan</option>
+                    <option value="NV">Feb</option>
+                    <option value="OR">Mar</option>
+                    <option value="WA">April</option>
+                </select>
+            </div>
+            <div class="form-group mb-xl">
+                <label class="control-label mb">Total Amount of commety</label>
+                <br/>
+                <input type="text" value="" class="form-control" />
+            </div>
+            <div class="form-group mb-xl">
+                <label class="control-label mb">Interest percentage</label>
+                <br/>
+                <input type="text" value="" class="form-control" />
+            </div>
+            <div class="form-group mb-xl">
+                <label class="control-label mb">Commety Finance By (optional)</label>
+                <br/>
+                <input type="text" value="" class="form-control" />
+            </div>
+            <div class="form-group mb-xl">
+                <label class="control-label mb">Commety finance to(optional)</label>
+                <br/>
+                <input type="text" value="" class="form-control" />
+            </div>
+            <div class="form-group mb-xl">
+                <label class="control-label mb">by Date</label>
+                <br/>
+                <p class="input-group">
+                    <input type="text" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" class="form-control"
+                            />
+                <span class="input-group-btn">
+                   <button type="button" ng-click="open($event)" class="btn btn-default">
+                       <em class="fa fa-calendar"></em>
+                   </button>
+                </span>
+                </p>
+            </div>
+            <div class="form-group mb-xl">
+                <label class="control-label mb">by Range</label>
+                <br/>
+                <input id="sl2" ui-slider="" type="text" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,750]" class="slider slider-lg form-control" />
+            </div>
+            <button class="btn btn-default btn-lg">Apply</button>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>-->
+    <div class="row" ng-controller="commetyController" ng-init="settingForm()">
+        <div class="col-lg-4">
+            <form name="loginForm" novalidate="" class="form-validate">
+                <!-- START panel-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">Create New Group</div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="control-label">Group Name</label>
+                            <br/>
+                            <input type="text" value="" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Parent Group Name</label>
+                            <br/>
+                            <input type="text" value="" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="clearfix">
+                            <div class="pull-right">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END panel-->
+            </form>
+        </div>
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="input-group ng-scope">
+                        <input class="input-sm form-control ng-pristine ng-valid ng-touched" ng-model="searchTree" type="text">
+                        <span class="input-group-btn"><button type="button" class="btn btn-sm btn-primary"> Search!</button> </span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="ibox float-e-margins" style="margin-top: -20px;">
+                        <div class="ibox-content">
+                            <script type="text/ng-template" id="nodes_renderer.html">
+                                <div ui-tree-handle class="tree-node tree-node-content">
+                                    <a class="pull-right btn btn-white btn-xs" data-nodrag ng-click="operation.delete(this)"><span class="fa fa-trash"></span></a>
+                                    <a class="pull-right btn btn-white btn-xs" data-nodrag ng-click="operation.edit(this)"><span class="fa fa-pencil"></span></a>
+                                    <a class="btn btn-primary btn-xs" data-nodrag ng-click="operation.toggle(this)"><span class="fa" ng-class="{'fa-angle-down': collapsed, 'fa-angle-right': !collapsed}"></span></a>
+                                    <label>{{node['name']}}</label>
+                                </div>
+                                <ol ui-tree-nodes="" ng-model="node.child" ng-class="{hidden: collapsed}">
+                                    <li ng-repeat="node in node.child | filter:searchTree" data-nodrag ui-tree-node ng-include="'nodes_renderer.html'"></li>
+                                </ol>
+                            </script>
+                            <div ui-tree id="tree-root" data-nodrag>
+                                <ol ui-tree-nodes ng-model="groupList">
+                                    <li ng-repeat="node in groupList" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
