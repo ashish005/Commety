@@ -192,7 +192,7 @@
                     $scope.myData = [];
                 }
                 commetyService[key].create(data).then(function (resp) {
-                    if('insurance' ==key || 'loan' == key){
+                    if('insurance' ==key || 'loan' == key || 'commety' == key){
                         $scope.myData.push(resp);
                     }else if('group' ==key){
                         var result = $scope.myData.filter(function (v) {

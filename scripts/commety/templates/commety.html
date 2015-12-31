@@ -1,7 +1,146 @@
 <div class="content-wrapper ng-scope ng-fadeInUp">
     <div commety-header></div>
     <div class="row" ng-controller="commetyController" ng-init="init('commety')">
-        <div class="col-lg-12">
+        <div class="col-lg-3">
+            <form name="commetyForm" ng-submit="SubmitForm(commetyForm, data, 'commety')" novalidate="" class="form-validate">
+                <!-- START panel-->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">Add New Commety Member</div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="control-label">Group Name</label>
+                            <br/>
+                            <select chosen="" ng-model="data.groupId" class="chosen-select form-control">
+                                <optgroup label="Alaskan/Hawaiian Time Zone">
+                                    <option value="AK">Alaska</option>
+                                    <option value="HI">Hawaii</option>
+                                </optgroup>
+                                <optgroup label="Pacific Time Zone">
+                                    <option value="CA">California</option>
+                                    <option value="NV">Nevada</option>
+                                    <option value="OR">Oregon</option>
+                                    <option value="WA">Washington</option>
+                                </optgroup>
+                                <optgroup label="Mountain Time Zone">
+                                    <option value="AZ">Arizona</option>
+                                    <option value="CO">Colorado</option>
+                                    <option value="ID">Idaho</option>
+                                    <option value="MT">Montana</option>
+                                    <option value="NE">Nebraska</option>
+                                    <option value="NM">New Mexico</option>
+                                    <option value="ND">North Dakota</option>
+                                    <option value="UT">Utah</option>
+                                    <option value="WY">Wyoming</option>
+                                </optgroup>
+                                <optgroup label="Central Time Zone">
+                                    <option value="AL">Alabama</option>
+                                    <option value="AR">Arkansas</option>
+                                    <option value="IL">Illinois</option>
+                                    <option value="IA">Iowa</option>
+                                    <option value="KS">Kansas</option>
+                                    <option value="KY">Kentucky</option>
+                                    <option value="LA">Louisiana</option>
+                                    <option value="MN">Minnesota</option>
+                                    <option value="MS">Mississippi</option>
+                                    <option value="MO">Missouri</option>
+                                    <option value="OK">Oklahoma</option>
+                                    <option value="SD">South Dakota</option>
+                                    <option value="TX">Texas</option>
+                                    <option value="TN">Tennessee</option>
+                                    <option value="WI">Wisconsin</option>
+                                </optgroup>
+                                <optgroup label="Eastern Time Zone">
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="FL">Florida</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="IN">Indiana</option>
+                                    <option value="ME">Maine</option>
+                                    <option value="MD">Maryland</option>
+                                    <option value="MA">Massachusetts</option>
+                                    <option value="MI">Michigan</option>
+                                    <option value="NH">New Hampshire</option>
+                                    <option value="NJ">New Jersey</option>
+                                    <option value="NY">New York</option>
+                                    <option value="NC">North Carolina</option>
+                                    <option value="OH">Ohio</option>
+                                    <option value="PA">Pennsylvania</option>
+                                    <option value="RI">Rhode Island</option>
+                                    <option value="SC">South Carolina</option>
+                                    <option value="VT">Vermont</option>
+                                    <option value="VA">Virginia</option>
+                                    <option value="WV">West Virginia</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Name</label>
+                            <br/>
+                            <input type="text" value="" ng-model="data.name" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Mobile</label>
+                            <br/>
+                            <input type="text" value="" ng-model="data.mobile" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Amount</label>
+                            <br/>
+                            <input type="text" value="" ng-model="data.amount" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Months of commety</label>
+                            <br/>
+                            <select chosen="" ng-model="data.commetyMonths" class="chosen-select form-control">
+                                <option value="1">Jan</option>
+                                <option value="2">Feb</option>
+                                <option value="3">Mar</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">Jun</option>
+                                <option value="7">July</option>
+                                <option value="8">Aug</option>
+                                <option value="9">Sept</option>
+                                <option value="10">Oct</option>
+                                <option value="11">Nov</option>
+                                <option value="12">Dec</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Total Amount of commety</label>
+                            <br/>
+                            <input type="text" ng-model="data.commetyAmount" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Interest percentage</label>
+                            <br/>
+                            <input type="text"  ng-model="data.commetyInterest" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Commety Finance By (optional)</label>
+                            <br/>
+                            <input type="text" ng-model="data.commetyFinanceBy" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Commety finance to(optional)</label>
+                            <br/>
+                            <input type="text" ng-model="data.commetyFinanceTo" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="clearfix">
+                            <div class="pull-right">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END panel-->
+            </form>
+        </div>
+        <div class="col-lg-9">
             <!-- START panel-->
             <div class="panel panel-default">
                 <div class="panel-heading"><h3 class="m0 pb-lg">Commety Members</h3>
