@@ -87,7 +87,7 @@
         function gridInitSettings(){
             $scope.filterOptions = {
                 filterText: "",
-                useExternalFilter: true
+                useExternalFilter: false
             };
             $scope.totalServerItems = 0;
             $scope.pagingOptions = {
@@ -108,12 +108,11 @@
                 enableColumnReordering: true,
                 showColumnMenu: true,
                 showFilter: true,
-                /*pagingOptions:    $scope.pagingOptions,
-                 filterOptions:    $scope.filterOptions*/
+                pagingOptions:$scope.pagingOptions,
+                filterOptions:$scope.filterOptions
             };
 
-            /*
-             $scope.setPagingData = function(data, page, pageSize){
+             /*$scope.setPagingData = function(data, page, pageSize){
              // calc for pager
              var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
              // Store data from server
@@ -162,21 +161,18 @@
              $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);*/
         }
 
-        $scope.init = function (){
+        $scope.init = function (key){
             gridInitSettings();
-            commetyService.getCommetyInfo().then(function(resp){
-                var obj = JSON.parse(resp);
-                if(obj){
-                    $scope.myData = obj;
-                };
+            commetyService[key].getInfo().then(function(resp){
+                $scope.myData = resp;
             }, function(){});
         };
 
-        $scope.insuranceForm = function (){
-            $scope.insuranceType = {
-                maxBhupa:{ type:'maxBhupa', isActive : true},
-                maxLife:{type:'maxLife', isActive :false}
-            };
+        $scope.insuranceType = {
+            maxBhupa:{ type:'maxBhupa'},
+            maxLife:{type:'maxLife'}
+        };
+        /*$scope.insuranceForm = function (){
             gridInitSettings();
             commetyService.getInsuranceInfo().then(function(resp){
                 var obj = JSON.parse(resp);
@@ -184,30 +180,28 @@
                     $scope.myData = obj;
                 };
             }, function(){});
-        };
+        };*/
 
-        $scope.newMemberForm = function (){
-        };
-
-        $scope.loanForm = function (){
-            gridInitSettings();
-            commetyService.getloanInfo().then(function(resp){
-                var obj = JSON.parse(resp);
-                if(obj){
-                    $scope.myData = obj;
-                };
-            }, function(){});
-        };
-
-        $scope.settingForm = function (){
-            var groupSvc = commetyService['group'];
-            groupSvc.getInfo().then(function (resp)
-            {
-                var obj = JSON.parse(resp);
-                if(obj){
-                    $scope.groupList = obj['groupList'];
-                };
-            }, function (error) {});
+        $scope.SubmitForm = function (form, data, key){
+            if(form.$valid) {
+                if($scope.myData){
+                    $scope.myData = [];
+                }
+                commetyService[key].create(data).then(function (resp) {
+                    if('insurance' ==key || 'loan' == key){
+                        $scope.myData.push(resp);
+                    }else if('group' ==key){
+                        var result = $scope.myData.filter(function (v) {
+                            return v.id === Number(data['parent']); // filter out appropriate one
+                        });
+                        if (resp.parent == 0) {
+                            $scope.myData.push(resp);
+                        } else {
+                            result[0]['child'].push(resp);
+                        }
+                    }
+                }, function (error) {});
+            }
         };
     }
 
@@ -223,34 +217,75 @@
         }
 
         var commetySvc = {};
-        commetySvc.getCommetyInfo = function(_req, successCallback, errorCallback){
-            var _req = {method: 'GET', url: baseUrl +'commety'};
-            return  ajaxRequest(_req);
-        }
-        commetySvc.getInsuranceInfo = function(_req, successCallback, errorCallback){
-            var _req = {method: 'GET', url: baseUrl +'insurance'};
-            return  ajaxRequest(_req);
-        }
-        commetySvc.getloanInfo = function(_req, successCallback, errorCallback){
-            var _req = {method: 'GET', url: baseUrl +'loan'};
-            return  ajaxRequest(_req);
-        }
-
         commetySvc.group = {
-            getInfo : function(_req, successCallback, errorCallback){
+            getInfo : function(_req){
                 var _req = {method: 'GET', url: baseUrl +'group'};
                 return  ajaxRequest(_req);
             },
-            create : function(_req, successCallback, errorCallback){
-                var _req = {method: 'POST', url: baseUrl +'group'};
+            create : function(data){
+                var _req = {method: 'POST', url: baseUrl +'group', data:JSON.stringify(data)};
                 return  ajaxRequest(_req);
             },
-            delete : function(_req, successCallback, errorCallback){
+            delete : function(_req){
                 var _req = {method: 'DELETE', url: baseUrl +'group'};
                 return  ajaxRequest(_req);
             },
-            change : function(_req, successCallback, errorCallback){
+            change : function(_req){
                 var _req = {method: 'PUT', url: baseUrl +'group'};
+                return  ajaxRequest(_req);
+            }
+        }
+        commetySvc.commety = {
+            getInfo : function(_req){
+                var _req = {method: 'GET', url: baseUrl +'commety'};
+                return  ajaxRequest(_req);
+            },
+            create : function(data){
+                var _req = {method: 'POST', url: baseUrl +'commety', data:JSON.stringify(data)};
+                return  ajaxRequest(_req);
+            },
+            delete : function(_req){
+                var _req = {method: 'DELETE', url: baseUrl +'commety'};
+                return  ajaxRequest(_req);
+            },
+            change : function(_req){
+                var _req = {method: 'PUT', url: baseUrl +'commety'};
+                return  ajaxRequest(_req);
+            }
+        }
+        commetySvc.insurance = {
+            getInfo : function(_req){
+                var _req = {method: 'GET', url: baseUrl +'insurance'};
+                return  ajaxRequest(_req);
+            },
+            create : function(data){
+                var _req = {method: 'POST', url: baseUrl +'insurance', data:JSON.stringify(data)};
+                return  ajaxRequest(_req);
+            },
+            delete : function(_req){
+                var _req = {method: 'DELETE', url: baseUrl +'insurance'};
+                return  ajaxRequest(_req);
+            },
+            change : function(_req, successCallback, errorCallback){
+                var _req = {method: 'PUT', url: baseUrl +'insurance'};
+                return  ajaxRequest(_req);
+            }
+        }
+        commetySvc.loan = {
+            getInfo : function(_req){
+                var _req = {method: 'GET', url: baseUrl +'loan'};
+                return  ajaxRequest(_req);
+            },
+            create : function(data){
+                var _req = {method: 'POST', url: baseUrl +'loan', data:JSON.stringify(data)};
+                return  ajaxRequest(_req);
+            },
+            delete : function(_req){
+                var _req = {method: 'DELETE', url: baseUrl +'loan'};
+                return  ajaxRequest(_req);
+            },
+            change : function(_req, successCallback, errorCallback){
+                var _req = {method: 'PUT', url: baseUrl +'loan'};
                 return  ajaxRequest(_req);
             }
         }

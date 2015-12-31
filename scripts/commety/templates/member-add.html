@@ -140,7 +140,7 @@
     <div class="row" ng-controller="commetyController" ng-init="loanForm()">
         <div class="col-lg-3"></div>
         <div class="col-lg-6">
-            <form name="loginForm" novalidate="" class="form-validate">
+            <form name="commetyForm"  ng-submit="SubmitForm(commetyForm, data, 'commety')" novalidate="" class="form-validate">
                 <!-- START panel-->
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -150,7 +150,7 @@
                         <div class="form-group">
                             <label class="control-label">Group Name</label>
                             <br/>
-                            <select chosen="" ng-model="searchState" class="chosen-select form-control">
+                            <select chosen="" ng-model="data.groupId" class="chosen-select form-control">
                                 <optgroup label="Alaskan/Hawaiian Time Zone">
                                     <option value="AK">Alaska</option>
                                     <option value="HI">Hawaii</option>
@@ -216,47 +216,55 @@
                         <div class="form-group">
                             <label class="control-label">Name</label>
                             <br/>
-                            <input type="text" value="" class="form-control" />
+                            <input type="text" value="" ng-model="data.name" class="form-control" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Mobile</label>
                             <br/>
-                            <input type="text" value="" class="form-control" />
+                            <input type="text" value="" ng-model="data.mobile" class="form-control" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Amount</label>
                             <br/>
-                            <input type="text" value="" class="form-control" />
+                            <input type="text" value="" ng-model="data.amount" class="form-control" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Months of commety</label>
                             <br/>
-                            <select chosen="" ng-model="searchState" class="chosen-select form-control">
-                                <option value="CA">Jan</option>
-                                <option value="NV">Feb</option>
-                                <option value="OR">Mar</option>
-                                <option value="WA">April</option>
+                            <select chosen="" ng-model="data.commetyMonths" class="chosen-select form-control">
+                                <option value="1">Jan</option>
+                                <option value="2">Feb</option>
+                                <option value="3">Mar</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">Jun</option>
+                                <option value="7">July</option>
+                                <option value="8">Aug</option>
+                                <option value="9">Sept</option>
+                                <option value="10">Oct</option>
+                                <option value="11">Nov</option>
+                                <option value="12">Dec</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Total Amount of commety</label>
                             <br/>
-                            <input type="text" value="" class="form-control" />
+                            <input type="text" ng-model="data.commetyAmount" class="form-control" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Interest percentage</label>
                             <br/>
-                            <input type="text" value="" class="form-control" />
+                            <input type="text"  ng-model="data.commetyInterest" class="form-control" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Commety Finance By (optional)</label>
                             <br/>
-                            <input type="text" value="" class="form-control" />
+                            <input type="text" ng-model="data.commetyFinanceBy" class="form-control" />
                         </div>
                         <div class="form-group">
                             <label class="control-label">Commety finance to(optional)</label>
                             <br/>
-                            <input type="text" value="" class="form-control" />
+                            <input type="text" ng-model="data.commetyFinanceTo" class="form-control" />
                         </div>
                     </div>
                     <div class="panel-footer">

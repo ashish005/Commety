@@ -1,8 +1,8 @@
 <div class="content-wrapper ng-scope ng-fadeInUp">
     <div commety-header></div>
-    <div class="row" ng-controller="commetyController" ng-init="loanForm()">
+    <div class="row" ng-controller="commetyController" ng-init="init('loan')">
         <div class="col-lg-4">
-            <form name="loanForm" novalidate="" class="form-validate">
+            <form name="loanForm" ng-submit="SubmitForm(loanForm, data, 'loan')" novalidate="" class="form-validate">
             <!-- START panel-->
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -11,22 +11,22 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <label class="control-label">Unique code (Name) *</label>
-                        <input type="text" required="" name="name" ng-model="loan.name" class="form-control" />
+                        <input type="text" required="" name="name" ng-model="data.name" class="form-control" />
                         <span ng-show="loanForm.name.$dirty && loanForm.name.$error.required" class="text-danger">This field is required</span>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Mobile *</label>
-                        <input type="password" name="mobile" required="" ng-model="loan.mobile" class="form-control" />
+                        <input type="text" name="mobile" required="" ng-model="data.mobile" class="form-control" />
                         <span ng-show="loanForm.mobile.$dirty && loanForm.mobile.$error.required" class="text-danger">This field is required</span>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Amount *</label>
-                        <input type="password" name="amount" required="" ng-model="loan.amount" class="form-control" />
+                        <input type="text" name="amount" required="" ng-model="data.amount" class="form-control" />
                         <span ng-show="loanForm.amount.$dirty && loanForm.amount.$error.required" class="text-danger">This field is required</span>
                     </div>
                     <div class="form-group">
                         <label class="control-label">percent *</label>
-                        <input type="password" name="percent" required="" ng-model="loan.percent" class="form-control" />
+                        <input type="text" name="percent" required="" ng-model="data.percent" class="form-control" />
                         <span ng-show="loanForm.percent.$dirty && loanForm.percent.$error.required" class="text-danger">This field is required</span>
                     </div>
                     <div class="required">* Required fields</div>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="panel-footer clearfix">
                         <div class="input-group">
-                            <input placeholder="Search message .." class="form-control input-sm" type="text">
+                            <input placeholder="Search message .." ng-model="filterOptions['filterText']" class="form-control input-sm" type="text">
                <span class="input-group-btn">
                   <button type="submit" class="btn btn-default btn-sm">Search</button>
                </span>
