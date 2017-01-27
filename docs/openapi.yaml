@@ -1,0 +1,1439 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Wize Api
+  description: Api Documentation for Wize Apps
+host: 'ci.wizeapps.io:9083'
+basePath: /api
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /applications:
+    get:
+      tags:
+        - application
+      operationId: getApplication
+      parameters: &ref_8
+        - &ref_2
+          $ref: '#/parameters/where'
+        - &ref_3
+          $ref: '#/parameters/columns'
+        - &ref_4
+          $ref: '#/parameters/order'
+        - &ref_5
+          $ref: '#/parameters/association'
+        - $ref: '#/parameters/offset'
+        - $ref: '#/parameters/limit'
+      responses:
+        '200':
+          description: An array of items
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/application'
+        '400':
+          description: Error while processing request
+        default:
+          description: Unexpected error
+    post:
+      tags:
+        - application
+      operationId: postApplication
+      parameters:
+        - name: object
+          in: body
+          description: An object or array of objects in JSON format
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/application'
+      responses: &ref_9
+        '201':
+          description: Post success
+        '400': &ref_0
+          description: Error while processing request
+        default: &ref_1
+          description: Unexpected error
+    delete:
+      tags:
+        - application
+      operationId: deleteApplication
+      parameters: &ref_10
+        - &ref_7
+          $ref: '#/parameters/delete_where'
+      responses: &ref_11
+        '204':
+          description: Delete success against the query
+        '400': *ref_0
+        default: *ref_1
+  '/applications/{id}':
+    get:
+      tags:
+        - application
+      operationId: getByIdApplication
+      parameters: &ref_12
+        - &ref_6
+          $ref: '#/parameters/id'
+        - *ref_2
+        - *ref_3
+        - *ref_4
+        - *ref_5
+      responses:
+        '200':
+          description: Item matched with the ID
+          schema:
+            $ref: '#/definitions/application'
+        '400':
+          description: Error while processing request
+        '404':
+          description: No matching items found
+        default:
+          description: Unexpected error
+    patch:
+      tags:
+        - application
+      operationId: patchByIdApplication
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/application'
+      responses: &ref_13
+        '200':
+          description: Item updated with specified ID
+        '400': *ref_0
+        default: *ref_1
+    delete:
+      tags:
+        - application
+      operationId: deleteByIdApplication
+      parameters: &ref_14
+        - *ref_6
+        - *ref_7
+      responses: &ref_15
+        '204':
+          description: Item deleted with specified ID
+        '400': *ref_0
+        default: *ref_1
+  /attributes:
+    get:
+      tags:
+        - attribute
+      operationId: getAttribute
+      parameters: *ref_8
+      responses:
+        '200':
+          description: An array of items
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/attribute'
+        '400':
+          description: Error while processing request
+        default:
+          description: Unexpected error
+    post:
+      tags:
+        - attribute
+      operationId: postAttribute
+      parameters:
+        - name: object
+          in: body
+          description: An object or array of objects in JSON format
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/attribute'
+      responses: *ref_9
+    delete:
+      tags:
+        - attribute
+      operationId: deleteAttribute
+      parameters: *ref_10
+      responses: *ref_11
+  '/attributes/{id}':
+    get:
+      tags:
+        - attribute
+      operationId: getByIdAttribute
+      parameters: *ref_12
+      responses:
+        '200':
+          description: Item matched with the ID
+          schema:
+            $ref: '#/definitions/attribute'
+        '400':
+          description: Error while processing request
+        '404':
+          description: No matching items found
+        default:
+          description: Unexpected error
+    patch:
+      tags:
+        - attribute
+      operationId: patchByIdAttribute
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/attribute'
+      responses: *ref_13
+    delete:
+      tags:
+        - attribute
+      operationId: deleteByIdAttribute
+      parameters: *ref_14
+      responses: *ref_15
+  /attribute_types:
+    get:
+      tags:
+        - attributeType
+      operationId: getAttributeType
+      parameters: *ref_8
+      responses:
+        '200':
+          description: An array of items
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/attribute_type'
+        '400':
+          description: Error while processing request
+        default:
+          description: Unexpected error
+    post:
+      tags:
+        - attributeType
+      operationId: postAttributeType
+      parameters:
+        - name: object
+          in: body
+          description: An object or array of objects in JSON format
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/attribute_type'
+      responses: *ref_9
+    delete:
+      tags:
+        - attributeType
+      operationId: deleteAttributeType
+      parameters: *ref_10
+      responses: *ref_11
+  '/attribute_types/{id}':
+    get:
+      tags:
+        - attributeType
+      operationId: getByIdAttributeType
+      parameters: *ref_12
+      responses:
+        '200':
+          description: Item matched with the ID
+          schema:
+            $ref: '#/definitions/attribute_type'
+        '400':
+          description: Error while processing request
+        '404':
+          description: No matching items found
+        default:
+          description: Unexpected error
+    patch:
+      tags:
+        - attributeType
+      operationId: patchByIdAttributeType
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/attribute_type'
+      responses: *ref_13
+    delete:
+      tags:
+        - attributeType
+      operationId: deleteByIdAttributeType
+      parameters: *ref_14
+      responses: *ref_15
+  '/attribute_value_arrays/{id}':
+    patch:
+      tags:
+        - attributeValueTextArray
+      operationId: patchByIdAttributeValueTextArray
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/attribute_value_text_array'
+      responses: *ref_13
+  '/attribute_value_blobs/{id}':
+    patch:
+      tags:
+        - attributeValueBlob
+      operationId: patchByIdAttributeValueBlob
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/attribute_value_blob'
+      responses: *ref_13
+  '/attribute_value_booleans/{id}':
+    patch:
+      tags:
+        - attributeValueBoolean
+      operationId: patchByIdAttributeValueBoolean
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/attribute_value_boolean'
+      responses: *ref_13
+  '/attribute_value_choices/{id}':
+    patch:
+      tags:
+        - attributeValueChoice
+      operationId: patchByIdAttributeValueChoice
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/attribute_value_choice'
+      responses: *ref_13
+  '/attribute_value_dates/{id}':
+    patch:
+      tags:
+        - attributeValueDate
+      operationId: patchByIdAttributeValueDate
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/attribute_value_date'
+      responses: *ref_13
+  '/attribute_value_decimals/{id}':
+    patch:
+      tags:
+        - attributeValueDecimal
+      operationId: patchByIdAttributeValueDecimal
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/attribute_value_decimal'
+      responses: *ref_13
+  '/attribute_value_doubles/{id}':
+    patch:
+      tags:
+        - attributeValueDouble
+      operationId: patchByIdAttributeValueDouble
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/attribute_value_double'
+      responses: *ref_13
+  '/attribute_value_floats/{id}':
+    patch:
+      tags:
+        - attributeValueFloat
+      operationId: patchByIdAttributeValueFloat
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/attribute_value_float'
+      responses: *ref_13
+  '/attribute_value_images/{id}':
+    patch:
+      tags:
+        - attributeValueImage
+      operationId: patchByIdAttributeValueImage
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/attribute_value_image'
+      responses: *ref_13
+  '/attribute_value_jsonbs/{id}':
+    patch:
+      tags:
+        - attributeValueJsonb
+      operationId: patchByIdAttributeValueJsonb
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/attribute_value_jsonb'
+      responses: *ref_13
+  '/attribute_value_locations/{id}':
+    patch:
+      tags:
+        - attributeValueLocation
+      operationId: patchByIdAttributeValueLocation
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/attribute_value_location'
+      responses: *ref_13
+  '/attribute_value_numbers/{id}':
+    patch:
+      tags:
+        - attributeValueNumber
+      operationId: patchByIdAttributeValueNumber
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/attribute_value_number'
+      responses: *ref_13
+  '/attribute_value_strings/{id}':
+    patch:
+      tags:
+        - attributeValueString
+      operationId: patchByIdAttributeValueString
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/attribute_value_string'
+      responses: *ref_13
+  '/attribute_value_texts/{id}':
+    patch:
+      tags:
+        - attributeValueText
+      operationId: patchByIdAttributeValueText
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/attribute_value_text'
+      responses: *ref_13
+  /auditables:
+    get:
+      tags:
+        - auditable
+      operationId: getAuditable
+      parameters: *ref_8
+      responses:
+        '200':
+          description: An array of items
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/auditable'
+        '400':
+          description: Error while processing request
+        default:
+          description: Unexpected error
+    post:
+      tags:
+        - auditable
+      operationId: postAuditable
+      parameters:
+        - name: object
+          in: body
+          description: An object or array of objects in JSON format
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/auditable'
+      responses: *ref_9
+    delete:
+      tags:
+        - auditable
+      operationId: deleteAuditable
+      parameters: *ref_10
+      responses: *ref_11
+  '/auditables/{id}':
+    get:
+      tags:
+        - auditable
+      operationId: getByIdAuditable
+      parameters: *ref_12
+      responses:
+        '200':
+          description: Item matched with the ID
+          schema:
+            $ref: '#/definitions/auditable'
+        '400':
+          description: Error while processing request
+        '404':
+          description: No matching items found
+        default:
+          description: Unexpected error
+    patch:
+      tags:
+        - auditable
+      operationId: patchByIdAuditable
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/auditable'
+      responses: *ref_13
+    delete:
+      tags:
+        - auditable
+      operationId: deleteByIdAuditable
+      parameters: *ref_14
+      responses: *ref_15
+  /choices:
+    get:
+      tags:
+        - choice
+      operationId: getChoice
+      parameters: *ref_8
+      responses:
+        '200':
+          description: An array of items
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/choice'
+        '400':
+          description: Error while processing request
+        default:
+          description: Unexpected error
+    post:
+      tags:
+        - choice
+      operationId: postChoice
+      parameters:
+        - name: object
+          in: body
+          description: An object or array of objects in JSON format
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/choice'
+      responses: *ref_9
+    delete:
+      tags:
+        - choice
+      operationId: deleteChoice
+      parameters: *ref_10
+      responses: *ref_11
+  '/choices/{id}':
+    get:
+      tags:
+        - choice
+      operationId: getByIdChoice
+      parameters: *ref_12
+      responses:
+        '200':
+          description: Item matched with the ID
+          schema:
+            $ref: '#/definitions/choice'
+        '400':
+          description: Error while processing request
+        '404':
+          description: No matching items found
+        default:
+          description: Unexpected error
+    patch:
+      tags:
+        - choice
+      operationId: patchByIdChoice
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/choice'
+      responses: *ref_13
+    delete:
+      tags:
+        - choice
+      operationId: deleteByIdChoice
+      parameters: *ref_14
+      responses: *ref_15
+  /entities:
+    get:
+      tags:
+        - entity
+      operationId: getEntity
+      parameters: *ref_8
+      responses:
+        '200':
+          description: An array of items
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/entity'
+        '400':
+          description: Error while processing request
+        default:
+          description: Unexpected error
+    post:
+      tags:
+        - entity
+      operationId: postEntity
+      parameters:
+        - name: object
+          in: body
+          description: An object or array of objects in JSON format
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/entity'
+      responses: *ref_9
+    delete:
+      tags:
+        - entity
+      operationId: deleteEntity
+      parameters: *ref_10
+      responses: *ref_11
+  '/entities/{id}':
+    get:
+      tags:
+        - entity
+      operationId: getByIdEntity
+      parameters: *ref_12
+      responses:
+        '200':
+          description: Item matched with the ID
+          schema:
+            $ref: '#/definitions/entity'
+        '400':
+          description: Error while processing request
+        '404':
+          description: No matching items found
+        default:
+          description: Unexpected error
+    patch:
+      tags:
+        - entity
+      operationId: patchByIdEntity
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/entity'
+      responses: *ref_13
+    delete:
+      tags:
+        - entity
+      operationId: deleteByIdEntity
+      parameters: *ref_14
+      responses: *ref_15
+  /groups:
+    get:
+      tags:
+        - group
+      operationId: getGroup
+      parameters: *ref_8
+      responses:
+        '200':
+          description: An array of items
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/group'
+        '400':
+          description: Error while processing request
+        default:
+          description: Unexpected error
+    post:
+      tags:
+        - group
+      operationId: postGroup
+      parameters:
+        - name: object
+          in: body
+          description: An object or array of objects in JSON format
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/group'
+      responses: *ref_9
+    delete:
+      tags:
+        - group
+      operationId: deleteGroup
+      parameters: *ref_10
+      responses: *ref_11
+  '/groups/{id}':
+    get:
+      tags:
+        - group
+      operationId: getByIdGroup
+      parameters: *ref_12
+      responses:
+        '200':
+          description: Item matched with the ID
+          schema:
+            $ref: '#/definitions/group'
+        '400':
+          description: Error while processing request
+        '404':
+          description: No matching items found
+        default:
+          description: Unexpected error
+    patch:
+      tags:
+        - group
+      operationId: patchByIdGroup
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/group'
+      responses: *ref_13
+    delete:
+      tags:
+        - group
+      operationId: deleteByIdGroup
+      parameters: *ref_14
+      responses: *ref_15
+  /sections:
+    get:
+      tags:
+        - section
+      operationId: getSection
+      parameters: *ref_8
+      responses:
+        '200':
+          description: An array of items
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/section'
+        '400':
+          description: Error while processing request
+        default:
+          description: Unexpected error
+    post:
+      tags:
+        - section
+      operationId: postSection
+      parameters:
+        - name: object
+          in: body
+          description: An object or array of objects in JSON format
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/section'
+      responses: *ref_9
+    delete:
+      tags:
+        - section
+      operationId: deleteSection
+      parameters: *ref_10
+      responses: *ref_11
+  '/sections/{id}':
+    get:
+      tags:
+        - section
+      operationId: getByIdSection
+      parameters: *ref_12
+      responses:
+        '200':
+          description: Item matched with the ID
+          schema:
+            $ref: '#/definitions/section'
+        '400':
+          description: Error while processing request
+        '404':
+          description: No matching items found
+        default:
+          description: Unexpected error
+    patch:
+      tags:
+        - section
+      operationId: patchByIdSection
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/section'
+      responses: *ref_13
+    delete:
+      tags:
+        - section
+      operationId: deleteByIdSection
+      parameters: *ref_14
+      responses: *ref_15
+  /users:
+    get:
+      tags:
+        - user
+      operationId: getUser
+      parameters: *ref_8
+      responses:
+        '200':
+          description: An array of items
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/user'
+        '400':
+          description: Error while processing request
+        default:
+          description: Unexpected error
+    post:
+      tags:
+        - user
+      operationId: postUser
+      parameters:
+        - name: object
+          in: body
+          description: An object or array of objects in JSON format
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/user'
+      responses: *ref_9
+    delete:
+      tags:
+        - user
+      operationId: deleteUser
+      parameters: *ref_10
+      responses: *ref_11
+  '/users/{id}':
+    get:
+      tags:
+        - user
+      operationId: getByIdUser
+      parameters: *ref_12
+      responses:
+        '200':
+          description: Item matched with the ID
+          schema:
+            $ref: '#/definitions/user'
+        '400':
+          description: Error while processing request
+        '404':
+          description: No matching items found
+        default:
+          description: Unexpected error
+    patch:
+      tags:
+        - user
+      operationId: patchByIdUser
+      parameters:
+        - $ref: '#/parameters/id'
+        - name: __diff object
+          in: body
+          description: Diff object in JSON format
+          required: true
+          schema:
+            $ref: '#/definitions/user'
+      responses: *ref_13
+    delete:
+      tags:
+        - user
+      operationId: deleteByIdUser
+      parameters: *ref_14
+      responses: *ref_15
+definitions:
+  application:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      index:
+        type: integer
+        format: int32
+      title:
+        type: string
+      description:
+        type: string
+      public:
+        type: boolean
+      category:
+        type: string
+        maxLength: 255
+      createdById:
+        type: integer
+        format: int32
+    required:
+      - createdById
+  attribute:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      index:
+        type: integer
+        format: int32
+      title:
+        type: string
+      description:
+        type: string
+      required:
+        type: boolean
+      attributeTypeId:
+        type: integer
+        format: int32
+    required:
+      - attributeTypeId
+  attribute_type:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      index:
+        type: integer
+        format: int32
+      name:
+        type: string
+        maxLength: 255
+      description:
+        type: string
+        description: The description for the attribute type
+      type:
+        type: string
+        maxLength: 255
+      typeHandler:
+        type: string
+        maxLength: 255
+        description: >-
+          The handler module to handle the response values during save and
+          retrieve
+  attribute_value_text_array:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      value:
+        type: array
+        items:
+          type: string
+      sectionIndex:
+        type: integer
+        format: int32
+      groupIndex:
+        type: integer
+        format: int32
+      questionIndex:
+        type: integer
+        format: int32
+      attributeValueRefId:
+        type: integer
+        format: int32
+      attributeId:
+        type: integer
+        format: int32
+    required:
+      - attributeValueRefId
+      - attributeId
+  attribute_value_blob:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      value:
+        type: string
+        format: binary
+      attributeValueRefId:
+        type: integer
+        format: int32
+      attributeId:
+        type: integer
+        format: int32
+    required:
+      - attributeValueRefId
+      - attributeId
+  attribute_value_boolean:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      value:
+        type: boolean
+      attributeValueRefId:
+        type: integer
+        format: int32
+      attributeId:
+        type: integer
+        format: int32
+    required:
+      - attributeValueRefId
+      - attributeId
+  attribute_value_choice:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      value:
+        type: string
+        format: json
+      attributeValueRefId:
+        type: integer
+        format: int32
+      attributeId:
+        type: integer
+        format: int32
+      choiceId:
+        type: integer
+        format: int32
+    required:
+      - value
+      - attributeValueRefId
+      - attributeId
+      - choiceId
+  attribute_value_date:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      value:
+        type: string
+        format: date-time
+      attributeValueRefId:
+        type: integer
+        format: int32
+      attributeId:
+        type: integer
+        format: int32
+    required:
+      - attributeValueRefId
+      - attributeId
+  attribute_value_decimal:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      value:
+        type: number
+      attributeValueRefId:
+        type: integer
+        format: int32
+      attributeId:
+        type: integer
+        format: int32
+    required:
+      - attributeValueRefId
+      - attributeId
+  attribute_value_double:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      value:
+        type: number
+        format: double
+      attributeValueRefId:
+        type: integer
+        format: int32
+      attributeId:
+        type: integer
+        format: int32
+    required:
+      - attributeValueRefId
+      - attributeId
+  attribute_value_float:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      value:
+        type: number
+        format: float
+      attributeValueRefId:
+        type: integer
+        format: int32
+      attributeId:
+        type: integer
+        format: int32
+    required:
+      - attributeValueRefId
+      - attributeId
+  attribute_value_image:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      name:
+        type: string
+        maxLength: 255
+      url:
+        type: string
+        maxLength: 255
+      attributeValueRefId:
+        type: integer
+        format: int32
+      attributeId:
+        type: integer
+        format: int32
+    required:
+      - attributeValueRefId
+      - attributeId
+  attribute_value_jsonb:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      value:
+        type: string
+        format: json
+      attributeValueRefId:
+        type: integer
+        format: int32
+      attributeId:
+        type: integer
+        format: int32
+    required:
+      - attributeValueRefId
+      - attributeId
+  attribute_value_location:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      lat:
+        type: number
+        format: double
+      lng:
+        type: number
+        format: double
+      address:
+        type: string
+        maxLength: 255
+      attributeValueRefId:
+        type: integer
+        format: int32
+      attributeId:
+        type: integer
+        format: int32
+    required:
+      - attributeValueRefId
+      - attributeId
+  attribute_value_number:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      value:
+        type: number
+      attributeValueRefId:
+        type: integer
+        format: int32
+      attributeId:
+        type: integer
+        format: int32
+    required:
+      - attributeValueRefId
+      - attributeId
+  attribute_value_string:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      value:
+        type: string
+        maxLength: 255
+      attributeValueRefId:
+        type: integer
+        format: int32
+      attributeId:
+        type: integer
+        format: int32
+    required:
+      - attributeValueRefId
+      - attributeId
+  attribute_value_text:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      value:
+        type: string
+      attributeValueRefId:
+        type: integer
+        format: int32
+      attributeId:
+        type: integer
+        format: int32
+    required:
+      - attributeValueRefId
+      - attributeId
+  auditable:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      index:
+        type: integer
+        format: int32
+      title:
+        type: string
+        maxLength: 255
+      description:
+        type: string
+      data:
+        type: string
+        format: json
+      auditableId:
+        type: integer
+        format: int32
+    required:
+      - title
+  choice:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      index:
+        type: integer
+        format: int32
+      value:
+        type: string
+        format: json
+      attributeId:
+        type: integer
+        format: int32
+      choiceId:
+        type: integer
+        format: int32
+    required:
+      - attributeId
+  entity:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      index:
+        type: integer
+        format: int32
+      title:
+        type: string
+        maxLength: 255
+      description:
+        type: string
+      private:
+        type: boolean
+      category:
+        type: string
+      enabled:
+        type: boolean
+      userDefinedAttr:
+        type: string
+        format: json
+      createdById:
+        type: integer
+        format: int32
+      applicationId:
+        type: integer
+        format: int32
+    required:
+      - createdById
+  group:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      index:
+        type: integer
+        format: int32
+      title:
+        type: string
+      description:
+        type: string
+      sectionId:
+        type: integer
+        format: int32
+    required:
+      - sectionId
+  section:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      index:
+        type: integer
+        format: int32
+      title:
+        type: string
+      description:
+        type: string
+      entityId:
+        type: integer
+        format: int32
+    required:
+      - entityId
+  user:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      email:
+        type: string
+        maxLength: 255
+      isActive:
+        type: boolean
+    required:
+      - email
+parameters:
+  where:
+    name: where
+    in: query
+    description: >-
+      Filter out the results based on this condition. Default return all with no
+      filtering.
+    required: false
+    type: string
+    format: json
+  columns:
+    name: columns
+    in: query
+    description: >-
+      Selects specified columns from the result set. Default return all with no
+      filtering.
+    required: false
+    type: string
+    format: json
+  order:
+    name: order
+    in: query
+    description: >-
+      Provide the result with specified colummns ordered as requested. Default
+      no order of result set.
+    required: false
+    type: string
+    format: json
+  association:
+    name: association
+    in: query
+    description: ''
+    required: false
+    type: string
+    format: json
+  offset:
+    name: offset
+    in: query
+    description: Offset the list of returned results by this amount. Default is zero.
+    required: false
+    type: integer
+    format: int32
+  limit:
+    name: limit
+    in: query
+    description: Number of items to retrieve. Default is no limit.
+    required: false
+    type: integer
+    format: int32
+  id:
+    name: id
+    in: path
+    description: ID of object
+    required: true
+    type: integer
+    format: int64
+  delete_where:
+    name: where
+    in: query
+    description: Delete matched items.
+    required: true
+    type: string
+  fileName:
+    name: fileName
+    in: query
+    description: Name of the file.
+    required: true
+    type: string
+  fileData:
+    name: fileData
+    in: formData
+    type: file
